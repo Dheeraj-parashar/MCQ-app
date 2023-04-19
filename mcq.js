@@ -24,6 +24,6 @@ submitButton.addEventListener("click",()=>{
     if(accessor=="") alert("Wrong Credentials")
     else{
          console.log(accessor)
-         window.location.href="https://super-halva-a36bfc.netlify.app/questionpage"
+         window.location.href="https://super-halva-a36bfc.netlify.app/questionpage";
     }
 })
