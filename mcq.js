@@ -18,6 +18,8 @@ submitButton.addEventListener("click",()=>{
         if((e.userId.toLowerCase())===(inputUser.value.toLowerCase()) && e.password===pass.value){
             access=true
             accessor=e.userId
+            console.log(e.userId)
+            window.location.href="https://super-halva-a36bfc.netlify.app/questionpage"
         }
     })
     if(accessor=="") alert("Wrong Credentials")

@@ -213,3 +213,7 @@ review.addEventListener("click",()=>{
         loadNextQuestion(qNo);
     }
 })
+
+setTimeout(()=>{
+window.location.href="https://super-halva-a36bfc.netlify.app/result"
+},30000)
