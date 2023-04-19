@@ -216,4 +216,4 @@ review.addEventListener("click",()=>{
 
 setTimeout(()=>{
 window.location.href="https://super-halva-a36bfc.netlify.app/result"
-},30000)
+},3000)
