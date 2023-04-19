@@ -25,4 +25,5 @@ submitButton.addEventListener("click",()=>{
     else{
          console.log(accessor)
          window.location.href="https://super-halva-a36bfc.netlify.app/questionpage"
+    }
 })
