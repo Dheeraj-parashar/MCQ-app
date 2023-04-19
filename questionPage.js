@@ -1,0 +1,215 @@
+const questions = [
+    {
+        question: "Which is longest river in the world",
+        options: {
+            a: "Amazon",
+            b: "Nile",
+            c: "Ganges",
+            d: "Hudson"
+        },
+        visited: false,
+        answered: false,
+        review: false,
+        correctOption: "b",
+        userAns: "",
+        scored:false
+    },
+    {
+        question: "Which is largest river in the world",
+        options: {
+            a: "Amazon",
+            b: "Nile",
+            c: "Ganges",
+            d: "Hudson"
+        },
+        visited: false,
+        answered: false,
+        review: false,
+        correctOption: "a",
+        userAns: "",
+        scored:false
+    },
+    {
+        question: "Who is main lead of Movie Top Gun",
+        options: {
+            a: "Christian Bale",
+            b: "Jason Stathom",
+            c: "Tom Cruise",
+            d: "Will smith"
+        },
+        visited: false,
+        answered: false,
+        review: false,
+        correctOption: "c",
+        userAns: "",
+        scored:false
+    }
+]
+
+var score = 0;
+var qNo = 0;
+const marker = document.querySelector(`#q${qNo}`)
+const prev = document.querySelector("#prev")
+const review = document.querySelector("#markForReview")
+const save = document.querySelector("#saveAndNext")
+const pelletque = document.querySelectorAll(".que")
+const viewedQuestion = document.querySelector("#viewedQuestion")
+const optionA = document.querySelector("#optionA")
+const optionB = document.querySelector("#optionB")
+const optionC = document.querySelector("#optionC")
+const optionD = document.querySelector("#optionD")
+
+optionA.addEventListener("click", () => {
+    if (questions[qNo].userAns != "a") {        //if answer is a it already has
+        questions[qNo].userAns = "a";           //color green, if not it will change    
+        optionA.style.backgroundColor = "green"     //it to green
+        optionB.style.backgroundColor = "bisque"
+        optionC.style.backgroundColor = "bisque"
+        optionD.style.backgroundColor = "bisque"
+    }
+    else {
+        questions[qNo].userAns = "";            // if same option is clicked again
+        optionA.style.backgroundColor = "bisque"
+        score-=1;
+        questions[qNo].scored = false;
+    }
+
+})
+
+optionB.addEventListener("click", () => {
+    if (questions[qNo].userAns != "b") {
+        questions[qNo].userAns = "b";
+        optionA.style.backgroundColor = "bisque"
+        optionB.style.backgroundColor = "green"
+        optionC.style.backgroundColor = "bisque"
+        optionD.style.backgroundColor = "bisque"
+    }
+    else {
+        questions[qNo].userAns = "";
+        optionB.style.backgroundColor = "bisque"
+        score-=1;
+        questions[qNo].scored = false;
+    }
+})
+
+
+
+
+
+optionC.addEventListener("click", () => {
+    if (questions[qNo].userAns != "c") {
+        questions[qNo].userAns = "c";
+        optionA.style.backgroundColor = "bisque"
+        optionB.style.backgroundColor = "bisque"
+        optionC.style.backgroundColor = "green"
+        optionD.style.backgroundColor = "bisque"
+    }
+    else {
+        questions[qNo].userAns = "";
+        optionC.style.backgroundColor = "bisque"
+        score-=1;
+        questions[qNo].scored = false;
+    }
+})
+
+optionD.addEventListener("click", () => {
+    if (questions[qNo].userAns != "d") {
+        questions[qNo].userAns = "d";
+        optionA.style.backgroundColor = "bisque"
+        optionB.style.backgroundColor = "bisque"
+        optionC.style.backgroundColor = "bisque"
+        optionD.style.backgroundColor = "green"
+    }
+    else {
+        questions[qNo].userAns = "";
+        optionD.style.backgroundColor = "bisque"
+        score-=1;
+        questions[qNo].scored = false;
+    }
+})
+
+function loadNextQuestion(qNo) {
+
+    viewedQuestion.innerHTML = questions[qNo].question  //to load new question 
+    console.log(questions)                              //and its options
+    optionA.innerHTML = questions[qNo].options.a
+    optionB.innerHTML = questions[qNo].options.b
+    optionC.innerHTML = questions[qNo].options.c
+    optionD.innerHTML = questions[qNo].options.d
+    optionA.style.backgroundColor = "bisque"
+    optionB.style.backgroundColor = "bisque"
+    optionC.style.backgroundColor = "bisque"
+    optionD.style.backgroundColor = "bisque"
+}
+loadNextQuestion(qNo);    //first load of question, which is at 0th index
+
+save.addEventListener("click", () => {
+    console.log(pelletque)
+    if (questions[qNo].userAns != "") {       //it means answer is given
+        pelletque[qNo].style.backgroundColor = "green"
+        questions[qNo].visited = true
+        questions[qNo].answered = true
+        if (questions[qNo].userAns == questions[qNo].correctOption && questions[qNo].scored==false ) {
+            score += 1;
+            questions[qNo].scored=true;
+        }
+        if(qNo==2) qNo=0          // last question then set question to first
+        else qNo += 1;             //next question
+        loadNextQuestion(qNo);   // nex question is loaded by save button
+    }
+    else {
+        pelletque[qNo].style.backgroundColor = "purple"  //when anser is not given
+        questions[qNo].visited = true               //question is visited
+        if(qNo==2) qNo=0
+        else qNo += 1;
+        loadNextQuestion(qNo);
+    }
+})
+
+/*------------------------------------------------------------*/
+
+prev.addEventListener("click",()=>{
+    
+    if (questions[qNo].userAns != "") {       //it means answer is given
+        pelletque[qNo].style.backgroundColor = "green"
+        questions[qNo].visited = true
+        questions[qNo].answered = true
+        if (questions[qNo].userAns == questions[qNo].correctOption && questions[qNo].scored==false ) {
+            score += 1;
+            questions[qNo].scored=true;
+        }
+        if(qNo==0) qNo=2          // first question then set question to lastfirst
+        else qNo -= 1;             //prev question
+        loadNextQuestion(qNo);   // prev question is loaded by prev button
+    }
+    else {
+        pelletque[qNo].style.backgroundColor = "purple"  //when anser is not given
+        questions[qNo].visited = true               //question is visited
+        if(qNo==0) qNo=2
+        else qNo -= 1;
+        loadNextQuestion(qNo);
+    }
+})
+/*---------------------------------------------------------------------------------*/
+
+review.addEventListener("click",()=>{
+    if (questions[qNo].userAns != "") {       //it means answer is given
+        pelletque[qNo].style.backgroundColor = "magenta"
+        questions[qNo].visited = true
+        questions[qNo].answered = true
+        if (questions[qNo].userAns == questions[qNo].correctOption && questions[qNo].scored==false ) {
+            score += 1;
+            questions[qNo].scored=true;
+        }
+        if(qNo==2) qNo=0          // last question then set question to first
+        else qNo += 1;             //next question
+        loadNextQuestion(qNo);   // nex question is loaded by save button
+    }
+    else {
+        pelletque[qNo].style.backgroundColor = "magenta"  //when anser is not given
+        questions[qNo].visited = true               //question is visited
+        if(qNo==2) qNo=0
+        else qNo += 1;
+        loadNextQuestion(qNo);
+    }
+})
