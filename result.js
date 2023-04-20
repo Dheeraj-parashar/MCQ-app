@@ -1,0 +1,9 @@
+const ans=document.querySelector("#answered")
+const review=document.querySelector("#review")
+const score=document.querySelector("#score")
+let answered= window.localStorage.getItem("answered");
+let reviewed= window.localStorage.getItem("markForReview");
+let scored= window.localStorage.getItem("score");
+ans.innerHTML=answered;
+review.innerHTML=reviewed;
+scored.innerHTML=scored;
