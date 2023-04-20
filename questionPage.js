@@ -60,9 +60,9 @@ const optionC = document.querySelector("#optionC")
 const optionD = document.querySelector("#optionD")
 const user = document.querySelector("#user")
 
-if (localStorage.getItem("userName")!=null){ user.innerHTML = JSON.parse(localStorage.getItem("userName"))} //shows name of the user who logged in
+if (localStorage.getItem("userName")!=null){ user.innerHTML = JSON.parse(JSON.parse(localStorage.getItem("userName")))} //shows name of the user who logged in
 else (user.innnerHTML = "Random User") //should not come in full app test
-console.log(JSON.parse(localStorage.getItem("userName")))
+console.log(JSON.parse(JSON.parse(localStorage.getItem("userName"))))
 
 optionA.addEventListener("click", () => {
     if (questions[qNo].userAns != "a") {        //if answer is a it already has
@@ -231,7 +231,6 @@ let time=setInterval(()=>{
 
 setTimeout(() => {
     clearInterval(time);
-    localStorage.removeItem("user");
     localStorage.setItem("score", JSON.stringify(score));
     let markForReview = 0;
     let answered = 0;
