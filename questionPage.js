@@ -60,7 +60,7 @@ const optionC = document.querySelector("#optionC")
 const optionD = document.querySelector("#optionD")
 const user = document.querySelector("#user")
 
-if (window.localStorage.getItem("user")) user.innerHTML = window.localStorage.getItem("user") //shows name of the user who logged in
+if (window.localStorage.getItem("user")!=null) user.innerHTML = JSON.parse(window.localStorage.getItem("user")) //shows name of the user who logged in
 else user.innnerHTML = "Random User" //should not come in full app test
 
 
@@ -218,17 +218,24 @@ review.addEventListener("click", () => {
         loadNextQuestion(qNo);
     }
 })
+const timer=document.querySelector("#timer")
+let timeleft=20;
+let time=setInterval(()=>{
+    timeleft-=1;
+    timer.innerHTML=`Timer :${timeleft}`
+},1000)
 
 setTimeout(() => {
-    window.localStorage.removeItem("user")
+    clearInterval(time);
+    window.localStorage.removeItem("user");
     window.localStorage.setItem("score", score);
-    let markForReview = 0
-    let answered = 0
+    let markForReview = 0;
+    let answered = 0;
     questions.map((e) => {
         if (e.review == true) markForReview += 1;
         if (e.answered == true) answered += 1;
     })
     window.localStorage.setItem("answered", answered);
     window.localStorage.setItem("markForReview", markForReview);
-    window.location.href = "https://super-halva-a36bfc.netlify.app/result"
-}, 20000)
+    window.location.href = "https://super-halva-a36bfc.netlify.app/result";
+}, 20000);
