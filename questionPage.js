@@ -71,10 +71,7 @@ optionA.addEventListener("click", () => {
         optionB.style.backgroundColor = "bisque"
         optionC.style.backgroundColor = "bisque"
         optionD.style.backgroundColor = "bisque"
-        
-        if(questions[qNo].correctOption==a){
-            questions[qNo].scored = true;  
-            score+=1}
+      
     }
     else {
         questions[qNo].userAns = "";            // if same option is clicked again
@@ -92,9 +89,7 @@ optionB.addEventListener("click", () => {
         optionB.style.backgroundColor = "green"
         optionC.style.backgroundColor = "bisque"
         optionD.style.backgroundColor = "bisque"
-        if(questions[qNo].correctOption==b){
-            questions[qNo].scored = true;
-            score+=1}
+       
     }
     else {
         questions[qNo].userAns = "";
@@ -115,9 +110,7 @@ optionC.addEventListener("click", () => {
         optionB.style.backgroundColor = "bisque"
         optionC.style.backgroundColor = "green"
         optionD.style.backgroundColor = "bisque"
-        if(questions[qNo].correctOption==c){
-            questions[qNo].scored = true;
-            score+=1}
+      
     }
     else {
         questions[qNo].userAns = "";
@@ -134,9 +127,7 @@ optionD.addEventListener("click", () => {
         optionB.style.backgroundColor = "bisque"
         optionC.style.backgroundColor = "bisque"
         optionD.style.backgroundColor = "green"
-        if(questions[qNo].correctOption==d){
-            questions[qNo].scored = true;
-            score+=1}
+       
     }
     else {
         questions[qNo].userAns = "";
@@ -171,16 +162,16 @@ save.addEventListener("click", () => {
             score += 1;
             questions[qNo].scored = true;
         }
-        if (qNo == 2) qNo = 0          // last question then set question to first
-        else qNo += 1;             //next question
-        loadNextQuestion(qNo);   // nex question is loaded by save button
+        if (qNo == 2) alert("Last Question")         // last question then set question to first
+        else {qNo += 1;             //next question
+        loadNextQuestion(qNo);}   // nex question is loaded by save button
     }
     else {
         pelletque[qNo].style.backgroundColor = "purple"  //when anser is not given
         questions[qNo].visited = true               //question is visited
-        if (qNo == 2) qNo = 0
-        else qNo += 1;
-        loadNextQuestion(qNo);
+        if (qNo == 2) alert("Last Question")
+        else {qNo += 1;
+        loadNextQuestion(qNo);}
     }
 })
 
@@ -196,16 +187,16 @@ prev.addEventListener("click", () => {
             score += 1;
             questions[qNo].scored = true;
         }
-        if (qNo == 0) qNo = 2          // first question then set question to lastfirst
-        else qNo -= 1;             //prev question
-        loadNextQuestion(qNo);   // prev question is loaded by prev button
+        if (qNo == 0) alert("First Question")        // first question then set question to lastfirst
+        else {qNo -= 1;             //prev question
+        loadNextQuestion(qNo);}   // prev question is loaded by prev button
     }
     else {
         pelletque[qNo].style.backgroundColor = "purple"  //when anser is not given
         questions[qNo].visited = true               //question is visited
-        if (qNo == 0) qNo = 2
-        else qNo -= 1;
-        loadNextQuestion(qNo);
+        if (qNo == 0) alert("First Question")
+        else {qNo -= 1;
+        loadNextQuestion(qNo);}
     }
 })
 /*---------------------------------------------------------------------------------*/
@@ -219,16 +210,16 @@ review.addEventListener("click", () => {
             score += 1;
             questions[qNo].scored = true;
         }
-        if (qNo == 2) qNo = 0          // last question then set question to first
-        else qNo += 1;             //next question
-        loadNextQuestion(qNo);   // nex question is loaded by save button
+        if (qNo == 2) alert("Last Question")         // last question then set question to first
+        else {qNo += 1;             //next question
+        loadNextQuestion(qNo);  } // nex question is loaded by save button
     }
     else {
         pelletque[qNo].style.backgroundColor = "magenta"  //when anser is not given
         questions[qNo].visited = true               //question is visited
-        if (qNo == 2) qNo = 0
-        else qNo += 1;
-        loadNextQuestion(qNo);
+        if (qNo == 2) alert("Last Question")
+        else {qNo += 1;
+        loadNextQuestion(qNo);}
     }
 })
 const timer=document.querySelector("#timer")
