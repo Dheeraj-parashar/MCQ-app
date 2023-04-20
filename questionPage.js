@@ -12,7 +12,7 @@ const questions = [
         review: false,
         correctOption: "b",
         userAns: "",
-        scored:false
+        scored: false
     },
     {
         question: "Which is largest river in the world",
@@ -27,7 +27,7 @@ const questions = [
         review: false,
         correctOption: "a",
         userAns: "",
-        scored:false
+        scored: false
     },
     {
         question: "Who is main lead of Movie Top Gun",
@@ -42,7 +42,7 @@ const questions = [
         review: false,
         correctOption: "c",
         userAns: "",
-        scored:false
+        scored: false
     }
 ]
 
@@ -58,6 +58,11 @@ const optionA = document.querySelector("#optionA")
 const optionB = document.querySelector("#optionB")
 const optionC = document.querySelector("#optionC")
 const optionD = document.querySelector("#optionD")
+const user = document.querySelector("#user")
+
+if (window.localStorage.getItem("user")) user.innerHTML = window.localStorage.getItem("user") //shows name of the user who logged in
+else user.innnerHTML = "Random User" //should not come in full app test
+
 
 optionA.addEventListener("click", () => {
     if (questions[qNo].userAns != "a") {        //if answer is a it already has
@@ -70,7 +75,7 @@ optionA.addEventListener("click", () => {
     else {
         questions[qNo].userAns = "";            // if same option is clicked again
         optionA.style.backgroundColor = "bisque"
-        score-=1;
+        score -= 1;
         questions[qNo].scored = false;
     }
 
@@ -87,7 +92,7 @@ optionB.addEventListener("click", () => {
     else {
         questions[qNo].userAns = "";
         optionB.style.backgroundColor = "bisque"
-        score-=1;
+        score -= 1;
         questions[qNo].scored = false;
     }
 })
@@ -107,7 +112,7 @@ optionC.addEventListener("click", () => {
     else {
         questions[qNo].userAns = "";
         optionC.style.backgroundColor = "bisque"
-        score-=1;
+        score -= 1;
         questions[qNo].scored = false;
     }
 })
@@ -123,7 +128,7 @@ optionD.addEventListener("click", () => {
     else {
         questions[qNo].userAns = "";
         optionD.style.backgroundColor = "bisque"
-        score-=1;
+        score -= 1;
         questions[qNo].scored = false;
     }
 })
@@ -149,18 +154,18 @@ save.addEventListener("click", () => {
         pelletque[qNo].style.backgroundColor = "green"
         questions[qNo].visited = true
         questions[qNo].answered = true
-        if (questions[qNo].userAns == questions[qNo].correctOption && questions[qNo].scored==false ) {
+        if (questions[qNo].userAns == questions[qNo].correctOption && questions[qNo].scored == false) {
             score += 1;
-            questions[qNo].scored=true;
+            questions[qNo].scored = true;
         }
-        if(qNo==2) qNo=0          // last question then set question to first
+        if (qNo == 2) qNo = 0          // last question then set question to first
         else qNo += 1;             //next question
         loadNextQuestion(qNo);   // nex question is loaded by save button
     }
     else {
         pelletque[qNo].style.backgroundColor = "purple"  //when anser is not given
         questions[qNo].visited = true               //question is visited
-        if(qNo==2) qNo=0
+        if (qNo == 2) qNo = 0
         else qNo += 1;
         loadNextQuestion(qNo);
     }
@@ -168,52 +173,62 @@ save.addEventListener("click", () => {
 
 /*------------------------------------------------------------*/
 
-prev.addEventListener("click",()=>{
-    
+prev.addEventListener("click", () => {
+
     if (questions[qNo].userAns != "") {       //it means answer is given
         pelletque[qNo].style.backgroundColor = "green"
         questions[qNo].visited = true
         questions[qNo].answered = true
-        if (questions[qNo].userAns == questions[qNo].correctOption && questions[qNo].scored==false ) {
+        if (questions[qNo].userAns == questions[qNo].correctOption && questions[qNo].scored == false) {
             score += 1;
-            questions[qNo].scored=true;
+            questions[qNo].scored = true;
         }
-        if(qNo==0) qNo=2          // first question then set question to lastfirst
+        if (qNo == 0) qNo = 2          // first question then set question to lastfirst
         else qNo -= 1;             //prev question
         loadNextQuestion(qNo);   // prev question is loaded by prev button
     }
     else {
         pelletque[qNo].style.backgroundColor = "purple"  //when anser is not given
         questions[qNo].visited = true               //question is visited
-        if(qNo==0) qNo=2
+        if (qNo == 0) qNo = 2
         else qNo -= 1;
         loadNextQuestion(qNo);
     }
 })
 /*---------------------------------------------------------------------------------*/
 
-review.addEventListener("click",()=>{
+review.addEventListener("click", () => {
     if (questions[qNo].userAns != "") {       //it means answer is given
         pelletque[qNo].style.backgroundColor = "magenta"
         questions[qNo].visited = true
         questions[qNo].answered = true
-        if (questions[qNo].userAns == questions[qNo].correctOption && questions[qNo].scored==false ) {
+        if (questions[qNo].userAns == questions[qNo].correctOption && questions[qNo].scored == false) {
             score += 1;
-            questions[qNo].scored=true;
+            questions[qNo].scored = true;
         }
-        if(qNo==2) qNo=0          // last question then set question to first
+        if (qNo == 2) qNo = 0          // last question then set question to first
         else qNo += 1;             //next question
         loadNextQuestion(qNo);   // nex question is loaded by save button
     }
     else {
         pelletque[qNo].style.backgroundColor = "magenta"  //when anser is not given
         questions[qNo].visited = true               //question is visited
-        if(qNo==2) qNo=0
+        if (qNo == 2) qNo = 0
         else qNo += 1;
         loadNextQuestion(qNo);
     }
 })
 
-setTimeout(()=>{
-window.location.href="https://super-halva-a36bfc.netlify.app/result"
-},3000)
+setTimeout(() => {
+    window.localStorage.removeItem("user")
+    window.localStorage.setItem("score", score);
+    let markForReview = 0
+    let answered = 0
+    questions.map((e) => {
+        if (e.review == true) markForReview += 1;
+        if (e.answered == true) answered += 1;
+    })
+    window.localStorage.setItem("answered", answered);
+    window.localStorage.setItem("markForReview", markForReview);
+    window.location.href = "https://super-halva-a36bfc.netlify.app/result"
+}, 20000)
