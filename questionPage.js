@@ -71,11 +71,15 @@ optionA.addEventListener("click", () => {
         optionB.style.backgroundColor = "bisque"
         optionC.style.backgroundColor = "bisque"
         optionD.style.backgroundColor = "bisque"
+        
+        if(questions[qNo].correctOption==a){
+            questions[qNo].scored = true;  
+            score+=1}
     }
     else {
         questions[qNo].userAns = "";            // if same option is clicked again
         optionA.style.backgroundColor = "bisque"
-        score -= 1;
+        if(questions[qNo].correctOption==a){score-=1}
         questions[qNo].scored = false;
     }
 
@@ -88,11 +92,14 @@ optionB.addEventListener("click", () => {
         optionB.style.backgroundColor = "green"
         optionC.style.backgroundColor = "bisque"
         optionD.style.backgroundColor = "bisque"
+        if(questions[qNo].correctOption==b){
+            questions[qNo].scored = true;
+            score+=1}
     }
     else {
         questions[qNo].userAns = "";
         optionB.style.backgroundColor = "bisque"
-        score -= 1;
+        if(questions[qNo].correctOption==b){score-=1}
         questions[qNo].scored = false;
     }
 })
@@ -108,11 +115,14 @@ optionC.addEventListener("click", () => {
         optionB.style.backgroundColor = "bisque"
         optionC.style.backgroundColor = "green"
         optionD.style.backgroundColor = "bisque"
+        if(questions[qNo].correctOption==c){
+            questions[qNo].scored = true;
+            score+=1}
     }
     else {
         questions[qNo].userAns = "";
         optionC.style.backgroundColor = "bisque"
-        score -= 1;
+        if(questions[qNo].correctOption==c){score-=1}
         questions[qNo].scored = false;
     }
 })
@@ -124,11 +134,14 @@ optionD.addEventListener("click", () => {
         optionB.style.backgroundColor = "bisque"
         optionC.style.backgroundColor = "bisque"
         optionD.style.backgroundColor = "green"
+        if(questions[qNo].correctOption==d){
+            questions[qNo].scored = true;
+            score+=1}
     }
     else {
         questions[qNo].userAns = "";
         optionD.style.backgroundColor = "bisque"
-        score -= 1;
+        if(questions[qNo].correctOption==d){score-=1}
         questions[qNo].scored = false;
     }
 })
