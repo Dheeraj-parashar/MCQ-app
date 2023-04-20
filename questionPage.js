@@ -46,9 +46,9 @@ const questions = [
     }
 ]
 
-var score = 0;
-var qNo = 0;
-const marker = document.querySelector(`#q${qNo}`)
+let score = 0;
+let qNo = 0;
+// const marker = document.querySelector(`#q${qNo}`)
 const prev = document.querySelector("#prev")
 const review = document.querySelector("#markForReview")
 const save = document.querySelector("#saveAndNext")
@@ -60,9 +60,9 @@ const optionC = document.querySelector("#optionC")
 const optionD = document.querySelector("#optionD")
 const user = document.querySelector("#user")
 
-if (localStorage.getItem("user")!=null){ user.innerHTML = JSON.parse(localStorage.getItem("user"))} //shows name of the user who logged in
+if (localStorage.getItem("userName")!=null){ user.innerHTML = JSON.parse(localStorage.getItem("userName"))} //shows name of the user who logged in
 else (user.innnerHTML = "Random User") //should not come in full app test
-console.log(JSON.parse(localStorage.getItem("user")))
+console.log(JSON.parse(localStorage.getItem("userName")))
 
 optionA.addEventListener("click", () => {
     if (questions[qNo].userAns != "a") {        //if answer is a it already has
@@ -136,7 +136,7 @@ optionD.addEventListener("click", () => {
 function loadNextQuestion(qNo) {
 
     viewedQuestion.innerHTML = questions[qNo].question  //to load new question 
-    console.log(questions)                              //and its options
+    // console.log(questions)                              //and its options
     optionA.innerHTML = questions[qNo].options.a
     optionB.innerHTML = questions[qNo].options.b
     optionC.innerHTML = questions[qNo].options.c
