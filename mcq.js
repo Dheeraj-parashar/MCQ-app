@@ -24,7 +24,7 @@ submitButton.addEventListener("click",()=>{
     if(accessor=="") alert("Wrong Credentials")
     else{
          console.log(accessor)
-         localStorage.setItem("userName", accessor);
+         localStorage.setItem("userName", JSON.stringify(accessor));
          window.location.href="https://super-halva-a36bfc.netlify.app/questionpage";
     }
 })

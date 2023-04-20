@@ -60,9 +60,9 @@ const optionC = document.querySelector("#optionC")
 const optionD = document.querySelector("#optionD")
 const user = document.querySelector("#user")
 
-if (window.localStorage.getItem("user")!=null) user.innerHTML = JSON.parse(window.localStorage.getItem("user")) //shows name of the user who logged in
-else user.innnerHTML = "Random User" //should not come in full app test
-
+if (localStorage.getItem("user")!=null){ user.innerHTML = JSON.parse(localStorage.getItem("user"))} //shows name of the user who logged in
+else (user.innnerHTML = "Random User") //should not come in full app test
+console.log(JSON.parse(localStorage.getItem("user")))
 
 optionA.addEventListener("click", () => {
     if (questions[qNo].userAns != "a") {        //if answer is a it already has
@@ -227,15 +227,15 @@ let time=setInterval(()=>{
 
 setTimeout(() => {
     clearInterval(time);
-    window.localStorage.removeItem("user");
-    window.localStorage.setItem("score", score);
+    localStorage.removeItem("user");
+    localStorage.setItem("score", JSON.stringify(score));
     let markForReview = 0;
     let answered = 0;
     questions.map((e) => {
         if (e.review == true) markForReview += 1;
         if (e.answered == true) answered += 1;
     })
-    window.localStorage.setItem("answered", answered);
-    window.localStorage.setItem("markForReview", markForReview);
+    localStorage.setItem("answered", JSON.stringify(answered));
+    localStorage.setItem("markForReview", JSON.stringify(markForReview));
     window.location.href = "https://super-halva-a36bfc.netlify.app/result";
 }, 20000);
