@@ -9,5 +9,5 @@ console.log(reviewed)
 console.log(scored)
 ans.innerHTML=answered;
 review.innerHTML=reviewed;
-scored.innerHTML=scored;
+score.innerHTML=scored;
 localStorage.clear();
